@@ -23,7 +23,6 @@ def fine_tune_model(pipeline, X_train, y_train, param_grid, cv=5, scoring='neg_m
         Best estimator (fitted) from the RandomizedSearchCV.
     """
     from sklearn.model_selection import RandomizedSearchCV
-    print("Fine tuning model with GridSearchCV...")
     grid_search = RandomizedSearchCV(estimator=pipeline,
                                param_distributions=param_grid,
                                cv=cv,
@@ -35,8 +34,6 @@ def fine_tune_model(pipeline, X_train, y_train, param_grid, cv=5, scoring='neg_m
                                 error_score='raise')
 
     grid_search.fit(X_train, y_train)
-    print(f"Best parameters found: {grid_search.best_params_}")
-    print(f"Best cross-validation score: {grid_search.best_score_}")
     return grid_search.best_estimator_
 
 

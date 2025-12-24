@@ -9,6 +9,11 @@ from sklearn.base import BaseEstimator, TransformerMixin
 import numpy as np
 import pandas as pd
 
+from features.feature_definitions import (
+    consistency_score,
+    motivation_adjusted_study,
+)
+
 
 class FeatureExtractor(BaseEstimator, TransformerMixin):
     """Create and remove features in a scikit-learn transformer wrapper.
@@ -90,36 +95,3 @@ class FeatureExtractor(BaseEstimator, TransformerMixin):
         ]
 
         return np.array(remaining_columns + list(self.new_features_funcs.keys()))
-
-
-def consistency_score(X):
-    """Compute a simple consistency score.
-
-    The score is defined as Attendance * Previous_Scores. Expects those
-    columns to exist in `X`.
-
-    Args:
-        X: pandas.DataFrame
-
-    Returns:
-        Series-like object with computed consistency score.
-    """
-    return X['Attendance'] * X['Previous_Scores']
-
-
-def motivation_adjusted_study(X):
-    """Compute hours studied adjusted by motivation level.
-
-    Maps Motivation_Level from ['Low','Medium','High'] to [1,2,3] and
-    multiplies Hours_Studied by that factor.
-
-    Args:
-        X: pandas.DataFrame
-
-    Returns:
-        Series-like object with motivation adjusted study measure.
-    """
-    return (
-        X['Hours_Studied']
-        * X['Motivation_Level'].map({'Low': 1, 'Medium': 2, 'High': 3})
-    )

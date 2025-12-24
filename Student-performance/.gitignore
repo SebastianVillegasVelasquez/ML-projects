@@ -1,49 +1,45 @@
-# Byte-compiled / cache
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
-*.so
-
-# Distribution / packaging
-build/
-dist/
-eggs/
-*.egg-info/
-.eggs/
-*.egg
-pip-wheel-metadata/
-__pypackages__/
-
 # Virtual environments
-.env
 .venv/
 venv/
+ENV/
 env/
 
-# Pytest cache
-.pytest_cache/
-
-# IDEs and editors
-.idea/
+# IDEs
 .vscode/
-*.sublime-workspace
-*.sublime-project
+.idea/
 
-# Jupyter
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Logs and temp files
-logs/
-*.log
-tmp/
-*.tmp
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
+# Data and artifacts (optional - keep out of VCS)
+data/processed/
+data/raw/
 artifacts/
 
+# Distribution / packaging
+.Python
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Python test/cache
+.pytest_cache/
+
+# Editor temporary files
+*.swp
+*~
 

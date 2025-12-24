@@ -1,71 +1,64 @@
 # Student Performance Prediction
 
-## Description
+## Overview
 
-Project to predict students' exam performance (`Exam_Score`) using academic, personal, family, and environmental features. The repository separates experimentation (notebooks) from production-ready code (`src/`).
+This repository implements a reproducible pipeline to predict student exam performance (target: `Exam_Score`) using academic, personal, family, and environmental features. Code and utilities are under `src/` and experiments live in `notebooks/`.
 
-## Goal
+## Goals
 
-Solve a regression problem to predict the exam score (`Exam_Score`). Main evaluation metrics are R² and RMSE.
+- Predict `Exam_Score` (regression) and evaluate using R² and RMSE.
+- Provide a modular preprocessing pipeline and reproducible training/evaluation scripts.
 
 ## Dataset
 
 - Source: Kaggle — Student Performance Factors
-- Samples: ~6,607
-- Features: ~20
-- Target: `Exam_Score` (approximate range 55–101)
+- Samples: ~6,600
+- Features: ~20 (numerical, ordinal, nominal, binary)
+- Target: `Exam_Score`
 
-The dataset contains numerical features, ordinal categorical variables, nominal categorical variables, and binary variables.
+## Methodology (brief)
 
-## Methodology (summary)
-
-1. Exploratory Data Analysis (EDA): distributions, correlations, and data quality checks.
-2. Modular preprocessing using pipelines (`ColumnTransformer`): missing value imputation, ordinal encoding, one-hot encoding for nominal variables, binary mapping, scaling and transformations (e.g., log for skewed features).
-3. Feature engineering: ablation studies and interaction features; in this project, engineered features provided little improvement.
-4. Model selection: comparison of several regressors; SVR (RBF kernel) showed the best stable performance.
-5. Hyperparameter tuning: `RandomizedSearchCV` over C, gamma, and epsilon.
-6. Final evaluation on a held-out test set with R² and RMSE.
-
-## Results (summary)
-
-- Selected model: SVR (RBF)
-- Test R²: ~0.769
-- Test RMSE: ~1.81
-
-> Interpretation: the model explains around 77% of the variance and predicts exam scores with an average error below 2 points.
+1. Exploratory data analysis (EDA).
+2. Preprocessing: imputation, encoding (ordinal/one-hot), scaling, and a ColumnTransformer pipeline.
+3. Feature engineering and selection.
+4. Model selection and hyperparameter tuning.
+5. Final evaluation on a hold-out test set.
 
 ## Project structure
 
-Current repository structure (summary):
+Current repository structure (top-level):
 
-- config.py
-- README.md
-- requirements.txt
-- artifacts/
-  - preprocessing_pipeline.joblib
-- data/
-  - raw/
-    - StudentPerformanceFactors.csv
-  - processed/
-    - preprocessed_data.csv
-- notebooks/
-  - student_perfomance.ipynb
-- src/
-  - data_loader.py
-  - featureEngineering.py
-  - io.py
-  - main.py
-  - model_evaluation.py
-  - paths.py
-  - preprocessing.py
-  - tuning.py
-- __pycache__/
+- `data/`
+  - `raw/`
+    - `StudentPerformanceFactors.csv`
+  - `processed/`
+    - `preprocessed_data.csv`
+- `features/`
+  - `feature_registry.yml`
+  - `feature_store.md`
+- `notebooks/`
+  - `student_perfomance.ipynb`
+- `src/`
+  - `data_loader.py`
+  - `featureEngineering.py`
+  - `io.py`
+  - `main.py`
+  - `model_evaluation.py`
+  - `paths.py`
+  - `preprocessing.py`
+  - `tuning.py`
+- `config.py`
+- `README.md`
+- `requirements.txt`
+- `.gitignore`
 
-Notes: `src/` contains reusable code and `notebooks/` contains experimentation and analysis.
+Notes:
+- `src/` contains the reusable code for loading, preprocessing, training, and evaluating models.
+- `notebooks/` contains analysis and experimentation.
 
 ## How to run
 
-1. (Optional) Create and activate a virtual environment:
+1. (Optional) Create and activate a virtual environment (PowerShell):
 
 ```powershell
 python -m venv .venv; .\.venv\Scripts\Activate.ps1
@@ -77,24 +70,20 @@ python -m venv .venv; .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-3. Run the pipeline/entrypoint:
+3. Run the main pipeline:
 
 ```powershell
 python src/main.py
 ```
 
-(You can also run `python main.py` depending on how you prefer to call the top-level script.)
+Depending on how you prefer to call scripts you may also run `python main.py` from the project root if configured.
 
-## Best practices and recommendations
+## Notes & recommendations
 
-- Keep experiments and notebooks separate from reusable code in `src/`.
-- Version important artifacts and document preprocessing changes.
-- Add unit tests and CI to ensure refactors do not break the pipeline.
+- Keep raw data out of version control (use `data/raw/` and add it to `.gitignore` if appropriate for your workflows).
+- Version important artifacts in `artifacts/` and avoid committing large binaries.
+- Add unit tests and CI for production code in `src/`.
 
 ## Author
 
 Sebastián — Software Engineering Student
-
----
-
-This project focuses on reproducibility and engineering best practices for machine learning.

@@ -2,7 +2,6 @@
 
 Entrypoint for running the end-to-end training and evaluation pipeline.
 """
-
 import logging
 
 from src.data_loader import  load_data
@@ -10,6 +9,9 @@ from src.preprocessing import build_preprocessing_pipeline
 from src.model_evaluation import evaluate_model
 from src.tuning import fine_tune_model
 from src.tuning import get_param_distributions_svr
+
+from config import apply_settings
+
 
 from sklearn.model_selection import train_test_split
 
@@ -69,6 +71,7 @@ def main() -> dict:
 
 if __name__ == "__main__":
     try:
+        apply_settings()
         main()
-    except Exception:
+    except [Exception, ValueError] as e:
         logging.exception("Pipeline execution failed")

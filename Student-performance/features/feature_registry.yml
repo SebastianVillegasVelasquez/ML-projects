@@ -1,0 +1,153 @@
+features:
+  - name: Attendance
+    data_type: numerical
+    subtype: continuous
+    source: raw
+    description: Percentage of classes attended by the student.
+
+  - name: Hours_Studied
+    data_type: numerical
+    subtype: continuous
+    source: raw
+    description: Total weekly study hours.
+
+  - name: Access_to_Resources
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Level of access to educational resources.
+    possible_values: [Low, Medium, High]
+    notes: Encoded as ordinal (Low < Medium < High)
+
+  - name: Previous_Scores
+    data_type: numerical
+    subtype: continuous
+    source: raw
+    description: Average scores from previous assessments (scaled).
+
+  - name: Motivation_Level
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Self-reported motivation.
+    possible_values: [Low, Medium, High]
+    notes: Ordinal encoding recommended.
+
+  - name: Parental_Involvement
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Frequency of parental engagement (Low, Medium, High).
+    possible_values: [Low, Medium, High]
+    notes: Ordinal encoding recommended.
+
+  - name: Tutoring_Sessions
+    data_type: numerical
+    subtype: discrete
+    source: raw
+    description: Number of tutoring sessions attended per month.
+
+  - name: Family_Income
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Income bracket of the student's family.
+    possible_values: [Low, Medium, High]
+    notes: Ordinal encoding recommended.
+
+  - name: Parental_Education_Level
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Highest education level attained by parents.
+    possible_values: [High School, College, Postgraduate]
+    notes: Ordinal encoding recommended.
+
+  - name: Peer_Influence
+    data_type: categorical
+    subtype: nominal
+    source: raw
+    description: Influence of peers on academic behavior.
+    possible_values: [Negative, Neutral, Positive]
+    notes: Consider one-hot encoding; interactions possible with parental involvement.
+
+  - name: Teacher_Quality
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Student's perception of teacher effectiveness.
+    possible_values: [Low, Medium, High]
+    notes: Ordinal encoding recommended.
+
+  - name: Distance_from_Home
+    data_type: categorical
+    subtype: ordinal
+    source: raw
+    description: Distance from home to school.
+    possible_values: [Near, Medium, Far]
+    notes: Ordinal encoding appropriate if distances have natural order.
+
+  - name: Extracurricular_Activities
+    data_type: categorical
+    subtype: binary
+    source: raw
+    description: Participation in extracurricular activities.
+    possible_values: [Yes, No]
+    notes: Map to 1/0 or use binary encoding.
+
+  - name: Learning_Disabilities
+    data_type: categorical
+    subtype: binary
+    source: raw
+    description: Presence of diagnosed learning disabilities.
+    possible_values: [Yes, No]
+    notes: Sensitive field — consider privacy and ethics.
+
+  - name: Internet_Access
+    data_type: categorical
+    subtype: binary
+    source: raw
+    description: Availability of internet access at home.
+    possible_values: [Yes, No]
+    notes: Map to 1/0 or use binary encoding.
+
+# Engineered features
+  - name: Consistency_Score
+    data_type: numerical
+    subtype: continuous
+    source: engineered
+    description: Attendance * Previous_Scores
+    notes: Derived feature, may be correlated with Attendance and Previous_Scores.
+
+  - name: Motivation_Adjusted_Study
+    data_type: numerical
+    subtype: continuous
+    source: engineered
+    description: Hours_Studied * Motivation_Level_encoded
+    notes: Interaction feature using encoded motivation level.
+
+# Deprecated features (kept for record)
+  - name: Sleep_Hours
+    data_type: numerical
+    subtype: continuous
+    source: deprecated
+    description: Removed due to low correlation with the target.
+
+  - name: Gender
+    data_type: categorical
+    subtype: nominal
+    source: deprecated
+    description: Excluded due to ethical concerns and potential bias.
+
+  - name: School_Type
+    data_type: categorical
+    subtype: nominal
+    source: deprecated
+    description: Removed after feature importance analysis.
+
+  - name: Physical_Activity
+    data_type: numerical
+    subtype: continuous
+    source: deprecated
+    description: Excluded due to low correlation with outcomes.
+
