@@ -58,7 +58,7 @@ Notes:
 
 ## How to run
 
-1. (Optional) Create and activate a virtual environment (PowerShell):
+1. Create and activate a virtual environment (PowerShell):
 
 ```powershell
 python -m venv .venv; .\.venv\Scripts\Activate.ps1
@@ -78,12 +78,6 @@ python src/main.py
 
 Depending on how you prefer to call scripts you may also run `python main.py` from the project root if configured.
 
-## Notes & recommendations
-
-- Keep raw data out of version control (use `data/raw/` and add it to `.gitignore` if appropriate for your workflows).
-- Version important artifacts in `artifacts/` and avoid committing large binaries.
-- Add unit tests and CI for production code in `src/`.
-
 ## Author
 
-Sebastián — Software Engineering Student
+Johan Sebastian Villegas Velasquez — Software Engineering Student
