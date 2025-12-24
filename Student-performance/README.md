@@ -32,9 +32,9 @@ training or hyperparameter tuning.
 - RMSE: **1.8080**
 - R²: **0.7687**
 
-These results indicate that the model is able to explain approximately XX% of
+These results indicate that the model is able to explain approximately 77% of
 the variance in students' exam scores, with an average prediction error of
-approximately X points.
+approximately 1.8 points.
 
 ## Project structure
 
