@@ -24,6 +24,18 @@ This repository implements a reproducible pipeline to predict student exam perfo
 4. Model selection and hyperparameter tuning.
 5. Final evaluation on a hold-out test set.
 
+## Final Model Performance
+
+The final model was evaluated on a hold-out test set that was not used during
+training or hyperparameter tuning.
+
+- RMSE: **1.8080**
+- R²: **0.7687**
+
+These results indicate that the model is able to explain approximately XX% of
+the variance in students' exam scores, with an average prediction error of
+approximately X points.
+
 ## Project structure
 
 Current repository structure (top-level):
